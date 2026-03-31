@@ -419,30 +419,12 @@
               <option value="musket">Musket period</option>
             </select>
           </div>
-          <div>
-            <label for="tableSelect">Quick tables</label>
-            <select id="tableSelect"></select>
-          </div>
         </div>
         <div class="summary" id="summaryText"></div>
       </div>
     </section>
 
     <main>
-      <section class="panel">
-        <h2>Rule Finder</h2>
-        <div class="badge-row" id="activeBadges"></div>
-        <div class="section-grid" id="sections"></div>
-      </section>
-
-      <section class="panel">
-        <h2>Interactive Tables</h2>
-        <div class="table-viewer">
-          <div class="legend" id="tableMeta"></div>
-          <div class="table-frame" id="tableFrame"></div>
-        </div>
-      </section>
-
       <section class="panel">
         <h2>Quick Calculators</h2>
         <div class="calc-grid">
@@ -474,6 +456,24 @@
               morale previously).
             </div>
           </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Rule Finder</h2>
+        <div class="badge-row" id="activeBadges"></div>
+        <div class="section-grid" id="sections"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Interactive Tables</h2>
+        <div class="calc-row">
+          <label for="tableSelect">Quick tables</label>
+          <select id="tableSelect"></select>
+        </div>
+        <div class="table-viewer">
+          <div class="legend" id="tableMeta"></div>
+          <div class="table-frame" id="tableFrame"></div>
         </div>
       </section>
 
@@ -551,10 +551,6 @@
         </div>
       </section>
 
-      <section class="panel">
-        <h2>Table of Contents Highlights</h2>
-        <div class="toc-grid" id="tocList"></div>
-      </section>
     </main>
 
     <footer>WG 2026 rules reference for fast tabletop play.</footer>
@@ -949,19 +945,6 @@
         },
       ];
 
-      const tocEntries = [
-        "Introduction: Genesis of the rules (pp. 3-5)",
-        "Common Rules: material, orders, movement (pp. 13-26)",
-        "Charge/Engage and 3-DT (pp. 26-31)",
-        "Shock and unit breakthrough (pp. 31-33)",
-        "Melee and post-melee morale (pp. 37-43)",
-        "Geography rules (pp. 44-47)",
-        "Ancient & Medieval capability charts (pp. 51-52)",
-        "Ancient/Medieval artillery (pp. 56-60)",
-        "Musket period capability charts (pp. 89-90)",
-        "Musket period artillery (pp. 91-98)",
-      ];
-
       const tableSelect = document.getElementById("tableSelect");
       const tableFrame = document.getElementById("tableFrame");
       const tableMeta = document.getElementById("tableMeta");
@@ -974,8 +957,6 @@
       const unitSizeInput = document.getElementById("unitSize");
       const lossesInput = document.getElementById("losses");
       const postMeleeResult = document.getElementById("postMeleeResult");
-      const tocList = document.getElementById("tocList");
-
       function renderTableOptions() {
         tableSelect.innerHTML = "";
         tables.forEach((table, index) => {
@@ -1120,14 +1101,9 @@
         `;
       }
 
-      function renderToc() {
-        tocList.innerHTML = tocEntries.map((entry) => `<span>${entry}</span>`).join("");
-      }
-
       renderTableOptions();
       renderTable(tables[0].id);
       renderCards(sectionsContainer, sections);
-      renderToc();
       applyFilters();
       updatePostMelee();
 
