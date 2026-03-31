@@ -3,24 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Miniature War Game Rules - Searchable Edition</title>
+    <title>WG 2026 Rules Explorer</title>
     <meta
       name="description"
-      content="Mobile-friendly, searchable rules reference for Miniature War Game Rules (Jan 2026)."
+      content="Searchable, mobile-friendly rules reference with interactive tables for the WG 2026 ruleset."
     />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@300;400;500;600&display=swap");
 
       :root {
-        --ink: #1f1b16;
-        --muted: #5c5246;
-        --paper: #f7f1e7;
-        --sand: #f1e7d7;
-        --clay: #c8a77a;
-        --forest: #2a4438;
-        --ember: #b15a3c;
-        --river: #4d7a8c;
-        --shadow: rgba(18, 16, 14, 0.15);
+        --ink: #1b1916;
+        --muted: #5b534b;
+        --paper: #fdf5e9;
+        --sand: #f3e1c7;
+        --clay: #c98b52;
+        --fern: #3d5a49;
+        --sea: #345e6b;
+        --ember: #b8613f;
+        --shadow: rgba(23, 16, 10, 0.15);
       }
 
       * {
@@ -29,44 +29,45 @@
 
       body {
         margin: 0;
-        font-family: "Source Sans 3", system-ui, -apple-system, sans-serif;
+        font-family: "Manrope", system-ui, sans-serif;
         color: var(--ink);
-        background: radial-gradient(circle at 15% 20%, #fef7ea 0%, #f5ebdc 40%, #efe2cf 100%);
+        background: radial-gradient(circle at 12% 12%, #fff9ee 0%, #f7e7cf 50%, #efd9bd 100%);
       }
 
       header {
-        padding: 28px 20px 18px;
-        background: linear-gradient(145deg, #f9f1e1, #efe0c7 60%, #e5d2b4);
-        border-bottom: 1px solid #e1cfae;
+        padding: 36px 20px 22px;
+        background: linear-gradient(140deg, #fff3dc 0%, #f3debf 55%, #ead1aa 100%);
+        border-bottom: 1px solid #dfc3a1;
       }
 
       .hero {
         max-width: 1100px;
         margin: 0 auto;
         display: grid;
-        gap: 14px;
+        gap: 12px;
       }
 
       .hero h1 {
         margin: 0;
-        font-family: "Cormorant Garamond", serif;
-        font-size: clamp(28px, 4vw, 42px);
-        letter-spacing: 0.3px;
+        font-family: "Fraunces", serif;
+        font-size: clamp(30px, 4.6vw, 46px);
+        letter-spacing: 0.2px;
       }
 
       .hero p {
         margin: 0;
         color: var(--muted);
         font-size: 15.5px;
+        max-width: 720px;
       }
 
       .toolbar {
         position: sticky;
         top: 0;
         z-index: 10;
-        background: rgba(247, 241, 231, 0.95);
-        backdrop-filter: blur(8px);
-        border-bottom: 1px solid #e6d7bf;
+        background: rgba(252, 244, 232, 0.96);
+        border-bottom: 1px solid #e3cfb3;
+        backdrop-filter: blur(10px);
       }
 
       .toolbar-inner {
@@ -74,7 +75,7 @@
         margin: 0 auto;
         padding: 12px 20px;
         display: grid;
-        gap: 10px;
+        gap: 12px;
       }
 
       .search-row {
@@ -83,25 +84,26 @@
         grid-template-columns: 1fr;
       }
 
-      .search-row input,
-      .search-row select {
-        width: 100%;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid #d9c7ad;
-        background: #fffdf9;
-        font-size: 15px;
-      }
-
-      .search-row label {
+      label {
         font-size: 12.5px;
         color: var(--muted);
       }
 
+      input,
+      select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #d8c1a3;
+        background: #fffdf8;
+        font-size: 15px;
+        color: var(--ink);
+      }
+
       .summary {
         display: flex;
-        gap: 12px;
         flex-wrap: wrap;
+        gap: 12px;
         font-size: 13px;
         color: var(--muted);
       }
@@ -109,22 +111,22 @@
       main {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 22px 20px 60px;
+        padding: 24px 20px 70px;
         display: grid;
         gap: 24px;
       }
 
       .panel {
         background: var(--paper);
-        border: 1px solid #ead9c1;
+        border: 1px solid #ead1b0;
         border-radius: 16px;
         padding: 18px;
-        box-shadow: 0 10px 30px var(--shadow);
+        box-shadow: 0 12px 28px var(--shadow);
       }
 
       .panel h2 {
-        margin: 0 0 10px;
-        font-family: "Cormorant Garamond", serif;
+        margin: 0 0 12px;
+        font-family: "Fraunces", serif;
         font-size: 24px;
       }
 
@@ -132,16 +134,16 @@
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
 
       .badge {
         font-size: 12px;
         padding: 4px 8px;
         border-radius: 999px;
-        background: #efe2cf;
+        background: #f2e1c7;
+        border: 1px solid #e0c6a5;
         color: var(--muted);
-        border: 1px solid #e0cfb5;
       }
 
       .section-grid {
@@ -150,104 +152,50 @@
       }
 
       .section-card {
-        border: 1px solid #e2d0b7;
-        background: #fdf8f0;
+        border: 1px solid #e3c9a3;
+        background: #fff7e9;
         border-radius: 14px;
-        padding: 14px 14px 12px;
+        padding: 14px;
+        display: grid;
+        gap: 8px;
       }
 
       .section-card h3 {
-        margin: 0 0 6px;
+        margin: 0;
         font-size: 18px;
       }
 
       .section-card p {
-        margin: 0 0 10px;
+        margin: 0;
         color: var(--muted);
         line-height: 1.5;
-        font-size: 15px;
+        font-size: 14.8px;
       }
 
       .section-meta {
         display: flex;
-        justify-content: space-between;
         flex-wrap: wrap;
-        gap: 6px;
+        align-items: center;
+        gap: 10px;
         font-size: 12px;
         color: var(--muted);
       }
 
       .section-meta button {
-        border: 1px solid #d7c2a7;
-        background: #fffaf1;
+        border: 1px solid #d8bd96;
+        background: #fff1db;
         border-radius: 999px;
         padding: 4px 10px;
         font-size: 12px;
         cursor: pointer;
       }
 
-      .callout label {
-        display: block;
-        font-size: 12px;
-        color: var(--muted);
-        margin-top: 8px;
-      }
-
-      .callout input {
-        width: 100%;
-        padding: 8px 10px;
-        border-radius: 10px;
-        border: 1px solid #d9c7ad;
-        background: #fffdf9;
+      .callout {
+        border-left: 4px solid var(--ember);
+        padding-left: 12px;
+        color: #4f3d2f;
         font-size: 14px;
-        margin-top: 4px;
-      }
-
-      .result-badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 4px 10px;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 12px;
-        letter-spacing: 0.2px;
-        border: 1px solid transparent;
-      }
-
-      .result-pass {
-        background: #dff2e0;
-        color: #1c4d2f;
-        border-color: #b8dfbc;
-      }
-
-      .result-back {
-        background: #fff0c2;
-        color: #6c4b00;
-        border-color: #f0d58b;
-      }
-
-      .result-backturn {
-        background: #ffd9b8;
-        color: #7a3a00;
-        border-color: #f4b98a;
-      }
-
-      .result-rout {
-        background: #f6c3c3;
-        color: #6b1e1e;
-        border-color: #e99c9c;
-      }
-
-      .result-fail {
-        background: #f6c3c3;
-        color: #6b1e1e;
-        border-color: #e99c9c;
-      }
-
-      .result-neutral {
-        background: #ece3d5;
-        color: #5c5246;
-        border-color: #d7c6ab;
+        line-height: 1.5;
       }
 
       .table-viewer {
@@ -258,31 +206,31 @@
       .table-frame {
         overflow-x: auto;
         border-radius: 12px;
-        border: 1px solid #e1d0b7;
-        background: #fffdfa;
+        border: 1px solid #e2ccb0;
+        background: #fffdf9;
       }
 
       table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 580px;
+        min-width: 560px;
         font-size: 14px;
       }
 
       th,
       td {
         padding: 8px 10px;
-        border-bottom: 1px solid #eee0c9;
+        border-bottom: 1px solid #efe0c5;
         text-align: left;
       }
 
       th {
-        background: #efe2cf;
+        background: #f1e0c5;
         font-weight: 600;
       }
 
       tbody tr:nth-child(even) td {
-        background: #f9f2e6;
+        background: #fbf1e1;
       }
 
       .legend {
@@ -292,19 +240,126 @@
         color: var(--muted);
       }
 
-      .callout {
-        border-left: 4px solid var(--ember);
-        padding-left: 12px;
-        margin-top: 8px;
-        color: #503c2e;
-        font-size: 14.5px;
+      .file-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .file-card {
+        border-radius: 14px;
+        border: 1px solid #e1c7a1;
+        background: #fff5e4;
+        padding: 14px 16px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .file-card h3 {
+        margin: 0;
+        font-size: 17px;
+      }
+
+      .file-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .file-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .file-actions a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid #d4b68c;
+        background: #ffefda;
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .file-actions a.primary {
+        background: #f0d7b2;
+        border-color: #cfa06a;
+      }
+
+      .calc-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calc-card {
+        border-radius: 14px;
+        border: 1px solid #e2c8a3;
+        background: #fff5e6;
+        padding: 14px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .calc-card h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .calc-row {
+        display: grid;
+        gap: 8px;
+      }
+
+      .result-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 12px;
+        border: 1px solid transparent;
+      }
+
+      .result-pass {
+        background: #daf0dc;
+        color: #1c4d2f;
+        border-color: #b8ddbe;
+      }
+
+      .result-back {
+        background: #fff1c7;
+        color: #6d4b02;
+        border-color: #efd490;
+      }
+
+      .result-backturn {
+        background: #ffd7b1;
+        color: #783904;
+        border-color: #f2b786;
+      }
+
+      .result-rout {
+        background: #f6c3c3;
+        color: #6b1e1e;
+        border-color: #eaa0a0;
+      }
+
+      .toc-grid {
+        display: grid;
+        gap: 10px;
+        font-size: 14px;
+        color: var(--muted);
       }
 
       footer {
-        padding: 18px 20px 30px;
+        padding: 20px;
         text-align: center;
-        font-size: 12.5px;
         color: var(--muted);
+        font-size: 12.5px;
       }
 
       @media (min-width: 720px) {
@@ -314,6 +369,14 @@
         }
 
         .section-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .file-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .calc-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
@@ -328,11 +391,10 @@
   <body>
     <header>
       <div class="hero">
-        <h1>Miniature War Game Rules</h1>
-        <p>Edition January 2026. Search, filter, and open every major table instantly.</p>
-
+        <h1>WG 2026 Rules Explorer</h1>
         <p>
-          Private, nonprofit use is encouraged. Source: WG 2025 Rules working copy updated Jan 26 2026.
+          Search the March 2026 Miniature War Game rules, jump straight to key topics, and
+          open interactive tables from the charts and rules reference sheets.
         </p>
       </div>
     </header>
@@ -345,7 +407,7 @@
             <input
               id="searchInput"
               type="search"
-              placeholder="Try: morale, charge, skirmish, artillery, movement..."
+              placeholder="Try: 3-DT, shock, movement, artillery, morale, musket..."
             />
           </div>
           <div>
@@ -368,26 +430,13 @@
 
     <main>
       <section class="panel">
-        <h2>Rule Calculators</h2>
-        <div class="section-grid">
-          <article class="section-card" id="postMeleeCalc" data-static="true">
-            <h3>Post-Melee Morale</h3>
-            <p>Calculate unit value, loss value, and morale effect.</p>
-            <div class="callout">
-              <label for="unitMorale">Morale value</label>
-              <input id="unitMorale" type="number" min="1" max="5" value="3" />
-              <label for="unitSize">Figures before losses</label>
-              <input id="unitSize" type="number" min="1" value="24" />
-              <label for="losses">Figures lost this turn</label>
-              <input id="losses" type="number" min="0" value="4" />
-              <div class="section-meta" id="postMeleeResult"></div>
-            </div>
-          </article>
-        </div>
+        <h2>Rule Finder</h2>
+        <div class="badge-row" id="activeBadges"></div>
+        <div class="section-grid" id="sections"></div>
       </section>
 
       <section class="panel">
-        <h2>Table Viewer</h2>
+        <h2>Interactive Tables</h2>
         <div class="table-viewer">
           <div class="legend" id="tableMeta"></div>
           <div class="table-frame" id="tableFrame"></div>
@@ -395,504 +444,528 @@
       </section>
 
       <section class="panel">
-        <h2>Core Sections</h2>
-        <div class="badge-row" id="activeBadges"></div>
-        <div class="section-grid" id="sections"></div>
+        <h2>Quick Calculators</h2>
+        <div class="calc-grid">
+          <article class="calc-card">
+            <h3>Post-Melee Morale</h3>
+            <div class="calc-row">
+              <label for="unitMorale">Morale value</label>
+              <input id="unitMorale" type="number" min="1" max="5" value="3" />
+            </div>
+            <div class="calc-row">
+              <label for="unitSize">Figures before losses</label>
+              <input id="unitSize" type="number" min="1" value="24" />
+            </div>
+            <div class="calc-row">
+              <label for="losses">Figures lost this turn</label>
+              <input id="losses" type="number" min="0" value="4" />
+            </div>
+            <div class="section-meta" id="postMeleeResult"></div>
+          </article>
+
+          <article class="calc-card">
+            <h3>3-DT Quick Check</h3>
+            <p>
+              A 3-DT is required when charging or breaking off melee if one unit has twice the
+              opponent's Total Morale Value. Pass if any die is equal or under the unit morale.
+            </p>
+            <div class="callout">
+              <strong>Dice used:</strong> 3 dice (no casualties), 2 dice (casualties), 1 die (poor
+              morale previously).
+            </div>
+          </article>
+        </div>
       </section>
 
       <section class="panel">
-        <h2>Quick Reference</h2>
-        <div class="section-grid" id="quickRefs"></div>
+        <h2>Document Library</h2>
+        <div class="file-grid">
+          <article class="file-card">
+            <h3>Rules Working Copy (Mar 25, 2026)</h3>
+            <p>Full rulebook with weather definitions and print copy layout.</p>
+            <div class="file-actions">
+              <a
+                class="primary"
+                href="WG%202026%20Rules%20%20working%20copy%20March%2025%20%202026%20with%20weather%20def%20print%20copy.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open PDF
+              </a>
+              <a
+                href="WG%202026%20Rules%20%20working%20copy%20March%2025%20%202026%20with%20weather%20def%20print%20copy.pdf"
+                download
+              >
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="file-card">
+            <h3>Table of Contents (March 2026)</h3>
+            <p>Quick jump index for major chapters and reference sections.</p>
+            <div class="file-actions">
+              <a
+                class="primary"
+                href="TABLE%20OF%20CONTENTS%20March%202026.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open PDF
+              </a>
+              <a href="TABLE%20OF%20CONTENTS%20March%202026.pdf" download>Download</a>
+            </div>
+          </article>
+
+          <article class="file-card">
+            <h3>Shorthand Table Contents (2026)</h3>
+            <p>Condensed reference for tables, outcomes, and quick lookups.</p>
+            <div class="file-actions">
+              <a
+                class="primary"
+                href="shorthand%20version%20table%20contents%202026.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open PDF
+              </a>
+              <a href="shorthand%20version%20table%20contents%202026.pdf" download>Download</a>
+            </div>
+          </article>
+
+          <article class="file-card">
+            <h3>Charts Sheet (Mar 26, 2026)</h3>
+            <p>Printable charts for capability, shock, and movement tables.</p>
+            <div class="file-actions">
+              <a
+                class="primary"
+                href="charts%20WG%20march%2026%202026.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open PDF
+              </a>
+              <a href="charts%20WG%20march%2026%202026.pdf" download>Download</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Table of Contents Highlights</h2>
+        <div class="toc-grid" id="tocList"></div>
       </section>
     </main>
 
-    <footer>
-      Built for tabletop play. Verify any interpretation with the players at the table.
-    </footer>
+    <footer>WG 2026 rules reference for fast tabletop play.</footer>
 
     <script>
       const sections = [
         {
-          id: "intro",
+          id: "intro-philosophy",
           title: "Game Philosophy",
           period: "common",
-          tags: ["philosophy", "guidelines"],
-          summary:
-            "Rules are guidelines. Resolve unclear situations fairly, keep debates short, and let the dice decide.",
+          page: "9-10",
+          tags: ["philosophy", "guidelines", "fair play"],
+          summary: "Rules are guidelines; resolve unclear situations fairly and keep play moving.",
           content:
-            "Every set of rules is a compromise between authenticity and playability. These rules aim for speed and realism, but players must interpret unusual situations with intent, fairness, and historical plausibility.",
+            "The rules emphasize fairness, intent, and historic plausibility. Use quick discussions and dice when needed.",
         },
         {
-          id: "setup",
-          title: "Setup and Materials",
+          id: "materials",
+          title: "Materials Needed to Play",
           period: "common",
-          tags: ["setup", "materials", "roster"],
-          summary:
-            "Dice, measuring tools, roster sheets, terrain, and a clear victory condition are required.",
+          page: "13",
+          tags: ["materials", "dice", "table", "tools"],
+          summary: "Dice, measuring tools, a table, figures, terrain, and order sheets.",
           content:
-            "Prepare dice (d6, d10, d12), measuring tools, roster and order sheets, and a board with agreed terrain. Decide point limits and victory conditions before armies are selected.",
+            "Requires d6/d10/d12 dice, metric measuring tools, terrain, and printed order/roster sheets.",
         },
         {
-          id: "sequence",
-          title: "Turn Sequence",
+          id: "measuring",
+          title: "Measuring & Scale",
           period: "common",
-          tags: ["turn", "orders", "sequence"],
-          summary:
-            "Orders, simultaneous movement, artillery, missile fire, shock, melee, and post-melee morale.",
+          page: "14-16",
+          tags: ["measuring", "scale", "movement"],
+          summary: "No pre-measuring; scale is 3 cm equals 10 yards.",
           content:
-            "Write orders for every unit, move simultaneously, resolve artillery, missile or musket fire, shock, melee, and then post-melee morale. Effects are simultaneous, even if resolved one side at a time.",
+            "Measure only when moving or firing. Scale: 3 cm on board equals ~10 yards in real life.",
         },
         {
-          id: "orders",
-          title: "Orders and Facing",
+          id: "orders-sequence",
+          title: "Orders & Turn Sequence",
           period: "common",
-          tags: ["orders", "facing", "formation"],
-          summary:
-            "Orders specify direction, distance, formation, and facing. No conditional orders.",
+          page: "22-25",
+          tags: ["orders", "sequence", "movement"],
+          summary: "Orders drive movement; turns flow from orders through morale.",
           content:
-            "Orders indicate intent only. Units follow their last written order if no new order is given. A change in ranks or files reduces movement by one third.",
-        },
-        {
-          id: "movement",
-          title: "Movement Effects",
-          period: "common",
-          tags: ["movement", "terrain"],
-          table: "movement-effects",
-          summary:
-            "Movement changes by terrain, formation changes, and roads. Units move at the rate of their slowest stand.",
-          content:
-            "Crossing rough terrain, forests, rivers at a ford, or changing direction over 45 degrees reduces movement by one third. Roads add one third for the portion traveled.",
-        },
-        {
-          id: "combat",
-          title: "Combat: Fire, Shock, Melee",
-          period: "common",
-          tags: ["combat", "fire", "shock", "melee"],
-          table: "shock-table",
-          summary:
-            "Fire occurs before shock and melee. Shock only on a declared charge. Melee uses 12-sided dice.",
-          content:
-            "Missile or musket fire resolves before shock. Shock is counted only after a declared charge with adequate run-up. Melee is simultaneous and reduces melee points by one per continuous turn.",
-        },
-        {
-          id: "morale",
-          title: "Morale",
-          period: "common",
-          tags: ["morale", "3dt", "post-melee"],
-          table: "morale-chart",
-          summary:
-            "Use the Three-Dice Test for charges and disengage. Post-melee morale triggers back, back and turn, or rout.",
-          content:
-            "3DT uses one to three d6; pass if any die is at or under the morale point. Post-melee morale compares losses to unit value using the chart.",
-        },
-        {
-          id: "geography",
-          title: "Geography Rules",
-          period: "common",
-          tags: ["terrain", "forest", "river", "hills"],
-          summary:
-            "Forests block sight; rivers need fords or bridges; hills reduce movement and affect sight.",
-          content:
-            "Forests restrict line of sight and slow movement. Rivers can be crossed only at fords or bridges. Each hill level costs one third of movement and affects visibility and range.",
-        },
-        {
-          id: "ancient",
-          title: "Ancient and Medieval Overview",
-          period: "ancient",
-          tags: ["ancient", "medieval", "battle"],
-          summary:
-            "Use battles (vanguard, main, rear) for morale bonuses. Missile armor classes matter.",
-          content:
-            "Ancient and medieval games include armor classes, siege engines, and battles. Units in a battle gain a morale column bonus but risk routing together.",
-        },
-        {
-          id: "musket",
-          title: "Musket Period Overview",
-          period: "musket",
-          tags: ["musket", "brigade", "artillery"],
-          summary:
-            "Regiments can form brigades for morale benefits. Musket and artillery ranges dominate.",
-          content:
-            "Musket-period games focus on regiments and brigades. Small arms fire depends on range bands, and artillery uses round, explosive, or canister shot.",
-        },
-      ];
-
-      const quickRefs = [
-        {
-          id: "premeasure",
-          title: "Measuring",
-          period: "common",
-          tags: ["measurement"],
-          summary:
-            "No pre-measuring. Measure only when moving or firing and only for the unit involved.",
-          content: "Out-of-range shots are lost. New players may pre-measure by agreement.",
-        },
-        {
-          id: "charges",
-          title: "Charge Rules",
-          period: "common",
-          tags: ["charge", "3dt"],
-          table: "charge-tmv",
-          summary:
-            "Charges add 1/3 movement, but reduce next turn. 3DT applies if TMV is double.",
-          content:
-            "If attacker or defender has double total morale value, the weaker side must pass a 3DT. Charge moves cannot turn more than 45 degrees in the final approach.",
-        },
-        {
-          id: "skirmish",
-          title: "Skirmish Line",
-          period: "common",
-          tags: ["skirmish"],
-          summary:
-            "Light infantry (morale 2) may spread to 2 cm gaps. Broken skirmish lines must reform or rout.",
-          content:
-            "Skirmish formations allow flexible screens but are fragile if disrupted.",
-        },
-        {
-          id: "hidden",
-          title: "Hidden Troops",
-          period: "common",
-          tags: ["hidden", "screening"],
-          summary:
-            "Use numbered markers until line of sight. Phantom markers can be used by agreement.",
-          content:
-            "Units reveal when within 90 cm and in line of sight. Artillery can see up to 120 cm in musket games.",
-        },
-        {
-          id: "artillery",
-          title: "Artillery Flow",
-          period: "common",
-          tags: ["artillery"],
-          table: "artillery-ranges",
-          summary:
-            "Artillery resolves before missile fire. Line of sight applies. Crews can be targeted.",
-          content:
-            "Use variation wheels and hit area templates. Remove artillery casualties before other fire.",
-        },
-        {
-          id: "victory",
-          title: "Victory Conditions",
-          period: "common",
-          tags: ["victory"],
-          summary:
-            "Set objectives before play: control terrain, time limit, capture leaders, or points.",
-          content:
-            "Avoid fighting to the last man. Clear objectives keep games decisive and fun.",
-        },
-      ];
-
-      const tables = [
-        {
-          id: "base-ancient",
-          title: "Base Sizes: Ancient & Medieval",
-          period: "ancient",
-          meta: "Infantry, missile, cavalry, and artillery stand sizes.",
-          html: `
-            <table>
-              <thead>
-                <tr><th>Type</th><th>Figures per Stand</th><th>Stand Size</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Crossbow</td><td>2</td><td>4 cm x 2 cm</td></tr>
-                <tr><td>Slingers</td><td>2</td><td>4 cm x 2 cm</td></tr>
-                <tr><td>Light Bowmen</td><td>2</td><td>4 cm x 2 cm</td></tr>
-                <tr><td>Long Bowmen</td><td>2</td><td>4 cm x 2 cm</td></tr>
-                <tr><td>Light Cavalry</td><td>1</td><td>2 cm x 4 cm</td></tr>
-                <tr><td>Medium Cavalry</td><td>1</td><td>2 cm x 4 cm</td></tr>
-                <tr><td>Heavy Cavalry</td><td>1</td><td>2 cm x 4 cm</td></tr>
-                <tr><td>Ballista</td><td>1 + 2 crew</td><td>4 cm x 4 cm</td></tr>
-                <tr><td>Onager / Catapult</td><td>1 + 4 crew</td><td>5 cm x 10 cm</td></tr>
-                <tr><td>Trebuchet</td><td>1 + 6 crew</td><td>6 cm x 12 cm</td></tr>
-              </tbody>
-            </table>
-          `,
-        },
-        {
-          id: "base-musket",
-          title: "Base Sizes: Musket Period",
-          period: "musket",
-          meta: "Infantry, cavalry, and artillery stand sizes.",
-          html: `
-            <table>
-              <thead>
-                <tr><th>Type</th><th>Figures per Stand</th><th>Stand Size</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Infantry</td><td>2</td><td>4 cm x 2 cm</td></tr>
-                <tr><td>Peasants</td><td>2</td><td>4 cm x 2 cm</td></tr>
-                <tr><td>Light / Medium</td><td>2</td><td>2 cm x 2 cm</td></tr>
-                <tr><td>Men-at-Arms</td><td>1</td><td>2 cm x 2 cm</td></tr>
-                <tr><td>All Cavalry</td><td>1</td><td>2 cm x 4 cm</td></tr>
-                <tr><td>6 pd cannon</td><td>1 + crew 4</td><td>5 cm x 5 cm</td></tr>
-                <tr><td>8 pd cannon</td><td>1 + crew 6</td><td>6 cm x 8 cm</td></tr>
-                <tr><td>8 pd howitzer</td><td>1 + crew 6</td><td>8 cm x 8 cm</td></tr>
-                <tr><td>12 pd cannon</td><td>1 + crew 6</td><td>8 cm x 8 cm</td></tr>
-                <tr><td>Rockets</td><td>1 + crew 4</td><td>8 cm x 8 cm</td></tr>
-              </tbody>
-            </table>
-          `,
+            "Write orders first. Move simultaneously, then artillery, small arms, shock, melee, post-melee morale.",
         },
         {
           id: "movement-effects",
           title: "Effects on Movement",
           period: "common",
-          meta: "Common reductions and bonuses.",
-          html: `
-            <table>
-              <thead>
-                <tr><th>Reduced by 1/3</th><th>Increased by 1/3</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Change direction over 45 degrees</td><td>Any portion on a road</td></tr>
-                <tr><td>Crossing creek (not bridge)</td><td>Musket column march straight (morale 4-5)</td></tr>
-                <tr><td>Crossing river at ford</td><td>Charge down a road (still only +1/3)</td></tr>
-                <tr><td>Moving up or down one hill level</td><td></td></tr>
-                <tr><td>Moving through forest or rough terrain</td><td></td></tr>
-                <tr><td>Changing formation (morale 2+)</td><td></td></tr>
-              </tbody>
-            </table>
-          `,
+          page: "25-26",
+          tags: ["movement", "terrain", "roads"],
+          summary: "Movement changes by terrain, formation changes, hills, and roads.",
+          content:
+            "Rough terrain, hills, fords, and formation changes reduce movement; roads can increase it.",
+          table: "movement-effects",
         },
         {
-          id: "charge-tmv",
-          title: "Charge and 3DT Outcomes",
+          id: "charge-3dt",
+          title: "Charge, Engage & 3-DT",
           period: "common",
-          meta: "Use when TMV is double for one side.",
-          html: `
-            <table>
-              <thead>
-                <tr><th>Condition</th><th>Who Tests</th><th>Result</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Attacker has 2x TMV</td>
-                  <td>Defender 3DT</td>
-                  <td>Fail: defender retreats 1/3 move with backs to enemy</td>
-                </tr>
-                <tr>
-                  <td>Defender has 2x TMV</td>
-                  <td>Attacker 3DT</td>
-                  <td>Fail: charge fails, attacker stays, -1 melee point if attacked</td>
-                </tr>
-                <tr>
-                  <td>Neither has 2x TMV</td>
-                  <td>No 3DT</td>
-                  <td>Charge proceeds normally</td>
-                </tr>
-              </tbody>
-            </table>
-          `,
+          page: "26-31",
+          tags: ["charge", "3dt", "morale"],
+          summary: "3-DT is required when TMV is doubled; charges add 1/3 movement.",
+          content:
+            "Use the three-dice morale test when one unit has twice the opponent's total morale value.",
+          table: "charge-3dt",
+        },
+        {
+          id: "shock",
+          title: "Shock",
+          period: "common",
+          page: "31-33",
+          tags: ["shock", "melee", "cavalry"],
+          summary: "Shock is counted after a declared charge with clear run-up.",
+          content:
+            "Shock casualties resolve before melee. Cavalry needs 10 cm straight run-up; infantry needs 6 cm.",
+          table: "shock-table",
+        },
+        {
+          id: "melee",
+          title: "Melee & Melee Points",
+          period: "common",
+          page: "37-39",
+          tags: ["melee", "combat"],
+          summary: "Melee uses 12-sided dice; points drop with continuous melee.",
+          content:
+            "Each figure rolls to survive at or under its melee point; continuous melee reduces points.",
+        },
+        {
+          id: "post-melee-morale",
+          title: "Post-Melee Morale",
+          period: "common",
+          page: "39-43",
+          tags: ["morale", "post-melee"],
+          summary: "Compare unit value and losses to determine back, back & turn, or rout.",
+          content:
+            "Multiply morale by figures before and lost this turn. Use the chart to find the result.",
+          table: "morale-chart",
+        },
+        {
+          id: "geography",
+          title: "Geography Rules",
+          period: "common",
+          page: "44-47",
+          tags: ["terrain", "forest", "rivers", "hills"],
+          summary: "Forests block sight, rivers need bridges or fords, hills slow movement.",
+          content:
+            "Forest sighting is limited, rivers require fords/bridges, hills reduce movement by thirds.",
+        },
+        {
+          id: "ancient-capability",
+          title: "Ancient & Medieval Capability",
+          period: "ancient",
+          page: "51-52",
+          tags: ["ancient", "medieval", "capability"],
+          summary: "Infantry, missile, cavalry, and artillery values for ancient/medieval.",
+          content:
+            "Figure capability chart covers armor, shock, movement, melee, morale, range, and cost.",
+          table: "capability-ancient-infantry",
+        },
+        {
+          id: "ancient-artillery",
+          title: "Ancient Artillery & Variation",
+          period: "ancient",
+          page: "56-60",
+          tags: ["artillery", "catapult", "ballista"],
+          summary: "Catapult, trebuchet, and ballista fire procedures and hit areas.",
+          content:
+            "Use variation wheels, call ranges, and resolve hit areas before missile fire.",
+          table: "ancient-artillery",
+        },
+        {
+          id: "musket-capability",
+          title: "Musket Period Capability",
+          period: "musket",
+          page: "89-90",
+          tags: ["musket", "capability", "infantry"],
+          summary: "Musket period infantry, cavalry, and artillery values.",
+          content:
+            "Figure capability chart covers shock, movement, melee, morale, range, and cost.",
+          table: "capability-musket-infantry",
+        },
+        {
+          id: "musket-artillery",
+          title: "Musket Artillery Rounds",
+          period: "musket",
+          page: "91-98",
+          tags: ["artillery", "musket", "canister"],
+          summary: "Round, explosive, and canister ranges plus hit areas.",
+          content:
+            "Use variation wheels and hit area guides; canister uses a wedge template.",
+          table: "artillery-ranges",
+        },
+        {
+          id: "small-arms",
+          title: "Small Arms Fire",
+          period: "musket",
+          page: "99-100",
+          tags: ["musket", "fire", "rifles"],
+          summary: "Odds by range band for pistols, muskets, carbines, and rifles.",
+          content:
+            "Odds shift by range band; loading and movement affect number of shots.",
+          table: "small-arms",
+        },
+      ];
+
+      const tables = [
+        {
+          id: "movement-effects",
+          title: "Effects on Movement",
+          period: "common",
+          meta: "Common reductions and bonuses.",
+          columns: ["Reduced by 1/3", "Reduced by 1/3", "Increased by 1/3"],
+          rows: [
+            ["Changing formation (morale 2-5)", "Artillery over fence or wall", "Ordered charge (reduced next turn)"],
+            ["Crossing a creek", "Crossing a river at a ford", "Bonus for any portion on a road"],
+            ["Up or down one hill level", "Moving through forest (not on road)", "Musket column march (morale 4-5)"],
+            ["Change direction over 45 degrees", "Moving across rough terrain", "Charge down a road"],
+            ["Infantry crossing fence or wall", "Passing through friendly unit", ""],
+          ],
+        },
+        {
+          id: "charge-3dt",
+          title: "3-DT in a Charge",
+          period: "common",
+          meta: "When TMV is doubled for one side.",
+          columns: ["Condition", "Who Tests", "Result"],
+          rows: [
+            ["Attacker has 2x TMV", "Defender 3-DT", "Fail: defender retreats 1/3 move with backs to enemy"],
+            ["Defender has 2x TMV", "Attacker 3-DT", "Fail: charge fails, attacker stays, -1 melee point if attacked"],
+            ["Neither has 2x TMV", "No 3-DT", "Charge proceeds normally"],
+          ],
         },
         {
           id: "shock-table",
           title: "Shock Table",
           period: "common",
           meta: "Roll one d6 per shock per figure.",
-          html: `
-            <table>
-              <thead>
-                <tr>
-                  <th>Attacker</th>
-                  <th>Light Infantry</th>
-                  <th>Medium Infantry</th>
-                  <th>Heavy Infantry</th>
-                  <th>Light Cavalry</th>
-                  <th>Medium Cavalry</th>
-                  <th>Heavy Cavalry</th>
-                  <th>Artillery</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Light Cavalry</td>
-                  <td>2,4,6</td>
-                  <td>4,6</td>
-                  <td>6</td>
-                  <td>6</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>6</td>
-                </tr>
-                <tr>
-                  <td>Medium Cavalry</td>
-                  <td>1,2,4,6</td>
-                  <td>2,4,6</td>
-                  <td>4,6</td>
-                  <td>4,6</td>
-                  <td>6</td>
-                  <td>-</td>
-                  <td>4,6</td>
-                </tr>
-                <tr>
-                  <td>Heavy Cavalry</td>
-                  <td>1,2,4,5,6</td>
-                  <td>1,2,4,6</td>
-                  <td>2,4,6</td>
-                  <td>2,4,6</td>
-                  <td>4,6</td>
-                  <td>6</td>
-                  <td>2,4,6</td>
-                </tr>
-                <tr>
-                  <td>Shock Infantry</td>
-                  <td>2,4,6</td>
-                  <td>4,6</td>
-                  <td>6</td>
-                  <td>6</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-              </tbody>
-            </table>
-          `,
+          columns: [
+            "Attacker",
+            "Light Infantry",
+            "Medium Infantry",
+            "Heavy Infantry",
+            "Light Cavalry",
+            "Medium Cavalry",
+            "Heavy Cavalry",
+            "Artillery",
+          ],
+          rows: [
+            ["Light Cavalry", "2,4,6", "4,6", "6", "6", "-", "-", "6"],
+            ["Medium Cavalry", "1,2,4,6", "2,4,6", "4,6", "4,6", "6", "-", "4,6"],
+            ["Heavy Cavalry", "1,2,4,5,6", "1,2,4,6", "2,4,6", "2,4,6", "4,6", "6", "2,4,6"],
+            ["Shock Infantry", "2,4,6", "4,6", "6", "6", "-", "-", "-"],
+          ],
         },
         {
           id: "shock-reductions",
           title: "Shock Reductions",
           period: "common",
           meta: "Apply reductions before rolling shock.",
-          html: `
-            <table>
-              <thead><tr><th>Situation</th><th>Reduction</th></tr></thead>
-              <tbody>
-                <tr><td>Behind wooden fence</td><td>-1 shock</td></tr>
-                <tr><td>Behind stone wall</td><td>-2 shock</td></tr>
-                <tr><td>Forest edge</td><td>-2 shock</td></tr>
-                <tr><td>Swiss pike (2 ranks)</td><td>-1 shock</td></tr>
-                <tr><td>Swiss pike (3 ranks)</td><td>-2 shock</td></tr>
-                <tr><td>Infantry in square</td><td>-2 shock</td></tr>
-                <tr><td>Roman testudo</td><td>-2 shock</td></tr>
-                <tr><td>Up each hill level</td><td>-1 shock</td></tr>
-              </tbody>
-            </table>
-          `,
+          columns: ["Situation", "Reduction"],
+          rows: [
+            ["Behind wooden fence", "-1 shock"],
+            ["Behind stone wall", "-2 shock"],
+            ["Forest edge", "-2 shock"],
+            ["Swiss pike (2 ranks)", "-1 shock"],
+            ["Swiss pike (3 ranks)", "-2 shock"],
+            ["Infantry in square", "-2 shock"],
+            ["Roman testudo", "-2 shock"],
+            ["Up each hill level", "-1 shock"],
+          ],
         },
         {
           id: "morale-chart",
           title: "Post-Melee Morale Chart",
           period: "common",
-          meta: "Compare unit value to losses (morale x figures).",
-          html: `
-            <table>
-              <thead>
-                <tr><th>Unit Value</th><th>No Effect</th><th>Back</th><th>Back and Turn</th><th>Rout</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>1-10</td><td>0</td><td>0</td><td>0</td><td>1+</td></tr>
-                <tr><td>11-20</td><td>0</td><td>1</td><td>2</td><td>3+</td></tr>
-                <tr><td>21-30</td><td>1</td><td>2</td><td>3-4</td><td>5+</td></tr>
-                <tr><td>31-40</td><td>1-2</td><td>3-4</td><td>5-6</td><td>7+</td></tr>
-                <tr><td>41-50</td><td>1-3</td><td>4-5</td><td>6-8</td><td>9+</td></tr>
-                <tr><td>51-60</td><td>1-5</td><td>6-8</td><td>9-11</td><td>12+</td></tr>
-                <tr><td>61-70</td><td>1-7</td><td>8-10</td><td>11-14</td><td>15+</td></tr>
-                <tr><td>71-80</td><td>1-8</td><td>9-12</td><td>13-17</td><td>18+</td></tr>
-                <tr><td>81-90</td><td>1-10</td><td>11-16</td><td>17-21</td><td>22+</td></tr>
-                <tr><td>91-100</td><td>0-20</td><td>21-25</td><td>25-32</td><td>33+</td></tr>
-                <tr><td>101-120</td><td>0-25</td><td>26-30</td><td>31-39</td><td>40+</td></tr>
-                <tr><td>121-150</td><td>0-35</td><td>36-55</td><td>56-59</td><td>60+</td></tr>
-              </tbody>
-            </table>
-          `,
+          meta: "Unit value vs. losses (morale x figures).",
+          columns: ["Unit Value", "No Effect", "Back", "Back & Turn", "Rout"],
+          rows: [
+            ["1-10", "0", "0", "0", "1+"],
+            ["11-20", "0", "1", "2", "3+"],
+            ["21-30", "1", "2", "3-4", "5+"],
+            ["31-40", "1-2", "3-4", "5-6", "7+"],
+            ["41-50", "1-3", "4-5", "6-8", "9+"],
+            ["51-60", "1-5", "6-8", "9-11", "12+"],
+            ["61-70", "1-7", "8-10", "11-14", "15+"],
+            ["71-80", "1-8", "9-12", "13-17", "18+"],
+            ["81-90", "1-10", "11-16", "17-21", "22+"],
+            ["91-100", "0-20", "21-25", "25-32", "33+"],
+            ["101-120", "0-25", "26-30", "31-39", "40+"],
+            ["121-150", "0-35", "36-55", "56-59", "60+"],
+          ],
         },
         {
-          id: "capability-ancient",
-          title: "Figure Capability Chart: Ancient / Medieval",
+          id: "capability-ancient-infantry",
+          title: "Ancient/Medieval Infantry",
           period: "ancient",
-          meta: "Infantry, missile, cavalry, and artillery values.",
-          html: `
-            <table>
-              <thead>
-                <tr><th>Type</th><th>Armor</th><th>Shock</th><th>Move (cm)</th><th>Melee</th><th>Morale</th><th>Range (cm)</th><th>Cost</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Peasants</td><td>Light</td><td>0</td><td>30</td><td>2</td><td>1</td><td>0</td><td>1</td></tr>
-                <tr><td>Light Infantry</td><td>Light</td><td>0</td><td>30</td><td>4</td><td>2</td><td>0</td><td>2</td></tr>
-                <tr><td>Medium Infantry</td><td>Medium</td><td>0</td><td>24</td><td>6</td><td>3</td><td>0</td><td>3</td></tr>
-                <tr><td>Men-at-Arms</td><td>Heavy</td><td>1/2</td><td>21</td><td>8</td><td>4</td><td>0</td><td>4</td></tr>
-                <tr><td>Hoplites</td><td>Medium</td><td>1</td><td>24</td><td>6</td><td>5</td><td>0</td><td>5</td></tr>
-                <tr><td>Archer (light)</td><td>Light</td><td>0</td><td>30</td><td>3</td><td>3</td><td>40</td><td>10</td></tr>
-                <tr><td>Longbow (medium)</td><td>Medium</td><td>0</td><td>24</td><td>4</td><td>4</td><td>60</td><td>20</td></tr>
-                <tr><td>Light Cavalry</td><td>Light</td><td>1</td><td>90</td><td>8</td><td>5</td><td>0</td><td>10</td></tr>
-                <tr><td>Heavy Cavalry</td><td>Heavy</td><td>3</td><td>72</td><td>10</td><td>5</td><td>0</td><td>10</td></tr>
-                <tr><td>Ballista</td><td>Light</td><td>-</td><td>12</td><td>2</td><td>-</td><td>90</td><td>75</td></tr>
-                <tr><td>Catapult / Onager</td><td>Light</td><td>-</td><td>12</td><td>2</td><td>-</td><td>120</td><td>100</td></tr>
-                <tr><td>Trebuchet</td><td>Light</td><td>-</td><td>0</td><td>2</td><td>-</td><td>120</td><td>120</td></tr>
-              </tbody>
-            </table>
-          `,
+          meta: "Figure capability chart (infantry).",
+          columns: ["Type", "Armor", "Shock", "Move cm", "Melee", "Morale", "Range cm", "Cost"],
+          rows: [
+            ["Peasants", "Light", "0", "30", "2", "1", "0", "1"],
+            ["Light Infantry", "Light", "0", "30", "4", "2", "0", "2"],
+            ["Medium Infantry", "Medium", "0", "24", "6", "3", "0", "3"],
+            ["Men-at-Arms", "Heavy", "1/2", "21", "8", "4", "0", "4"],
+            ["Hoplites", "Medium", "1", "24", "6", "5", "0", "5"],
+            ["Roman Aux", "Light", "0", "30", "4", "3", "Varies", "3"],
+            ["Romans", "Medium", "1/2", "24", "8", "5", "3 cm Pilums", "8"],
+          ],
         },
         {
-          id: "capability-musket",
-          title: "Figure Capability Chart: Musket Period",
-          period: "musket",
-          meta: "Infantry, cavalry, and artillery values.",
-          html: `
-            <table>
-              <thead>
-                <tr><th>Type</th><th>Shock</th><th>Move (cm)</th><th>Melee</th><th>Morale</th><th>Range (cm)</th><th>Cost</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Militia</td><td>0</td><td>30</td><td>2</td><td>1</td><td>30</td><td>1</td></tr>
-                <tr><td>Light Infantry</td><td>1</td><td>36</td><td>4</td><td>4</td><td>30</td><td>2</td></tr>
-                <tr><td>Rifles</td><td>0</td><td>36</td><td>2</td><td>2</td><td>54</td><td>4</td></tr>
-                <tr><td>Regulars</td><td>1</td><td>36</td><td>5</td><td>4</td><td>30</td><td>3</td></tr>
-                <tr><td>Guard</td><td>1</td><td>30</td><td>8</td><td>5</td><td>30</td><td>5</td></tr>
-                <tr><td>Light Cavalry</td><td>2</td><td>90</td><td>8</td><td>5</td><td>10</td><td>10</td></tr>
-                <tr><td>Dragoons</td><td>1</td><td>84</td><td>6</td><td>5</td><td>25</td><td>10</td></tr>
-                <tr><td>Cuirassier</td><td>3</td><td>84</td><td>11</td><td>5</td><td>-</td><td>10</td></tr>
-                <tr><td>6 pd cannon</td><td>-</td><td>21</td><td>2</td><td>4</td><td>60</td><td>40</td></tr>
-                <tr><td>8 pd cannon</td><td>-</td><td>21</td><td>2</td><td>4</td><td>80</td><td>80</td></tr>
-                <tr><td>12 pd cannon</td><td>-</td><td>21</td><td>2</td><td>4</td><td>120</td><td>120</td></tr>
-              </tbody>
-            </table>
-          `,
+          id: "capability-ancient-missile",
+          title: "Ancient/Medieval Missile",
+          period: "ancient",
+          meta: "Figure capability chart (missile).",
+          columns: ["Type", "Armor", "Shock", "Move cm", "Melee", "Morale", "Range cm", "Cost"],
+          rows: [
+            ["Archer", "Light", "0", "30", "3", "3", "40", "10"],
+            ["Archer", "Medium", "0", "24", "4", "3", "40", "10"],
+            ["Crossbow", "Light", "0", "30", "3", "3", "40", "5"],
+            ["Crossbow", "Medium", "0", "24", "4", "3", "40", "5"],
+            ["Longbow", "Light", "0", "30", "3", "4", "60", "20"],
+            ["Longbow", "Medium", "0", "24", "4", "4", "60", "20"],
+            ["Arbalest", "Light", "0", "30", "3", "3", "60", "15"],
+            ["Arbalest", "Medium", "0", "24", "4", "3", "60", "15"],
+            ["Horse Archer", "Light", "1", "60", "3", "4", "30", "20"],
+            ["Horse Archer", "Medium", "1", "60", "4", "4", "30", "20"],
+            ["Slinger", "Light", "0", "30", "2", "2", "30", "5"],
+          ],
         },
         {
-          id: "small-arms",
-          title: "Small Arms Fire Odds",
+          id: "capability-ancient-cavalry",
+          title: "Ancient/Medieval Cavalry",
+          period: "ancient",
+          meta: "Figure capability chart (cavalry).",
+          columns: ["Type", "Armor", "Shock", "Move cm", "Melee", "Morale", "Range cm", "Cost"],
+          rows: [
+            ["Light Cavalry", "Light", "1", "90", "8", "5", "0", "10"],
+            ["Medium Cavalry", "Medium", "2", "78", "9", "5", "0", "10"],
+            ["Heavy Cavalry", "Heavy", "3", "72", "10", "5", "0", "10"],
+            ["Mounts/Infantry", "-", "0", "60", "0", "0", "0", "5"],
+            ["Chariot/Archer", "Medium", "1", "51", "6", "-", "30", "20"],
+            ["Chariot/Slinger", "Medium", "1", "51", "6", "-", "21", "15"],
+            ["Chariot/Javelin", "Medium", "1", "51", "6", "-", "12", "10"],
+            ["Chariot/Fighter", "Medium", "1", "24", "6", "-", "0", "5"],
+            ["War Elephant (Javelin)", "Medium", "0", "24", "8", "-", "10", "50"],
+            ["War Elephant (Archer)", "Medium", "0", "24", "8", "-", "30", "75"],
+          ],
+        },
+        {
+          id: "ancient-artillery",
+          title: "Ancient/Medieval Artillery",
+          period: "ancient",
+          meta: "Artillery movement, range, and hit areas.",
+          columns: ["Type", "Armor", "Move cm", "Melee", "Range", "Hit Area", "Crew", "Cost"],
+          rows: [
+            ["Ballista", "Light", "12", "2", "90", "6 cm linear", "3", "75"],
+            ["Onager/Catapult", "Light", "12", "2", "100", "8 cm diameter", "6", "100"],
+            ["Trebuchet", "Light", "0", "2", "120", "10 cm diameter", "9", "120"],
+          ],
+        },
+        {
+          id: "capability-musket-infantry",
+          title: "Musket Period Infantry",
           period: "musket",
-          meta: "Ten-sided die hit odds by range band.",
-          html: `
-            <table>
-              <thead>
-                <tr><th>Weapon</th><th>Near</th><th>Mid</th><th>Far</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Pistols</td><td>1-3 cm (2,4,6)</td><td>4-6 cm (4,6)</td><td>7-12 cm (6)</td></tr>
-                <tr><td>Muskets</td><td>1-12 cm (2,4,6)</td><td>13-21 cm (4,6)</td><td>22-30 cm (6)</td></tr>
-                <tr><td>Fusils/Carbines</td><td>1-9 cm (2,4,6)</td><td>9-18 cm (4,6)</td><td>19-24 cm (6)</td></tr>
-                <tr><td>Rifles</td><td>1-21 cm (2,4,6)</td><td>22-42 cm (4,6)</td><td>43-60 cm (6)</td></tr>
-              </tbody>
-            </table>
-          `,
+          meta: "Figure capability chart (infantry).",
+          columns: ["Type", "Shock", "Move cm", "Melee", "Morale", "Range cm", "Cost"],
+          rows: [
+            ["Militia", "0", "30", "2", "1", "30", "1"],
+            ["Light Infantry", "1", "36", "4", "4", "30", "2"],
+            ["Rifles", "0", "36", "2", "2", "54", "4"],
+            ["Regulars", "1", "36", "5", "4", "30", "3"],
+            ["Carbines/Fusils", "0", "30", "3", "4", "24", "2"],
+            ["Indians", "0", "42", "4", "2", "30", "4"],
+            ["Grenadiers", "1", "30", "6", "4", "30", "4"],
+            ["Guard", "1", "30", "8", "5", "30", "5"],
+          ],
+        },
+        {
+          id: "capability-musket-cavalry",
+          title: "Musket Period Cavalry",
+          period: "musket",
+          meta: "Figure capability chart (cavalry).",
+          columns: ["Type", "Shock", "Move cm", "Melee", "Morale", "Range cm", "Cost"],
+          rows: [
+            ["Light/Hussars", "2", "90", "8", "5", "10", "10"],
+            ["Light/Lancers", "2", "90", "10", "5", "-", "10"],
+            ["Dragoons", "1", "84", "6", "5", "25", "10"],
+            ["Cuirassier", "3", "84", "11", "5", "-", "10"],
+          ],
+        },
+        {
+          id: "capability-musket-artillery",
+          title: "Musket Period Artillery",
+          period: "musket",
+          meta: "Artillery movement, morale, range, cost.",
+          columns: ["Type", "Move cm", "Melee", "Morale", "Range cm", "Cost"],
+          rows: [
+            ["6 pd cannon", "21", "2", "4", "60", "40"],
+            ["6 pd horse artillery", "42", "2", "4", "60", "60"],
+            ["8 pd cannon", "21", "2", "4", "80", "80"],
+            ["8 pd howitzer", "21", "2", "4", "20-80", "100"],
+            ["12 pd cannon", "21", "2", "4", "120", "120"],
+            ["Congreve rockets", "42", "2", "4", "20-80", "80"],
+          ],
         },
         {
           id: "artillery-ranges",
           title: "Artillery Rounds: Musket Period",
           period: "musket",
           meta: "Canister, explosive, and solid shot ranges.",
-          html: `
-            <table>
-              <thead>
-                <tr><th>Gun</th><th>Canister (cm)</th><th>Explosive (cm)</th><th>Solid (cm)</th><th>Explosive Hit Area</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>6 pd / Rockets</td><td>0-20</td><td>21-40</td><td>0-60</td><td>6 cm</td></tr>
-                <tr><td>8 pd</td><td>0-25</td><td>26-40</td><td>0-80</td><td>8 cm</td></tr>
-                <tr><td>8 pd howitzer</td><td>-</td><td>30-80</td><td>-</td><td>8 cm</td></tr>
-                <tr><td>12 pd</td><td>0-30</td><td>31-80</td><td>0-120</td><td>12 cm</td></tr>
-              </tbody>
-            </table>
-          `,
+          columns: ["Gun", "Canister", "Explosive", "Round/Solid", "Explosive Hit Area"],
+          rows: [
+            ["6 pd / Rockets", "0-20", "21-40", "0-60", "6 cm"],
+            ["8 pd", "0-25", "26-40", "0-80", "8 cm"],
+            ["8 pd howitzer", "-", "30-80", "-", "8 cm"],
+            ["12 pd", "0-30", "31-80", "0-120", "12 cm"],
+          ],
         },
+        {
+          id: "small-arms",
+          title: "Small Arms Fire Odds",
+          period: "musket",
+          meta: "Ten-sided die odds by range band.",
+          columns: ["Weapon", "Near", "Mid", "Far"],
+          rows: [
+            ["Pistols", "1-3 cm (2,4,6)", "4-6 cm (4,6)", "7-12 cm (6)"],
+            ["Muskets", "1-12 cm (2,4,6)", "13-21 cm (4,6)", "22-30 cm (6)"],
+            ["Fusils/Carbines", "1-9 cm (2,4,6)", "9-18 cm (4,6)", "19-24 cm (6)"],
+            ["Rifles", "1-21 cm (2,4,6)", "22-42 cm (4,6)", "43-60 cm (6)"],
+          ],
+        },
+      ];
+
+      const tocEntries = [
+        "Introduction: Genesis of the rules (pp. 3-5)",
+        "Common Rules: material, orders, movement (pp. 13-26)",
+        "Charge/Engage and 3-DT (pp. 26-31)",
+        "Shock and unit breakthrough (pp. 31-33)",
+        "Melee and post-melee morale (pp. 37-43)",
+        "Geography rules (pp. 44-47)",
+        "Ancient & Medieval capability charts (pp. 51-52)",
+        "Ancient/Medieval artillery (pp. 56-60)",
+        "Musket period capability charts (pp. 89-90)",
+        "Musket period artillery (pp. 91-98)",
       ];
 
       const tableSelect = document.getElementById("tableSelect");
       const tableFrame = document.getElementById("tableFrame");
       const tableMeta = document.getElementById("tableMeta");
       const sectionsContainer = document.getElementById("sections");
-      const quickRefsContainer = document.getElementById("quickRefs");
       const summaryText = document.getElementById("summaryText");
       const activeBadges = document.getElementById("activeBadges");
       const searchInput = document.getElementById("searchInput");
@@ -901,6 +974,7 @@
       const unitSizeInput = document.getElementById("unitSize");
       const lossesInput = document.getElementById("losses");
       const postMeleeResult = document.getElementById("postMeleeResult");
+      const tocList = document.getElementById("tocList");
 
       function renderTableOptions() {
         tableSelect.innerHTML = "";
@@ -915,7 +989,19 @@
 
       function renderTable(id) {
         const table = tables.find((item) => item.id === id) || tables[0];
-        tableFrame.innerHTML = table.html;
+        const header = `
+          <thead>
+            <tr>${table.columns.map((col) => `<th>${col}</th>`).join("")}</tr>
+          </thead>
+        `;
+        const body = `
+          <tbody>
+            ${table.rows
+              .map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`)
+              .join("")}
+          </tbody>
+        `;
+        tableFrame.innerHTML = `<table>${header}${body}</table>`;
         tableMeta.innerHTML = `
           <div><strong>Table:</strong> ${table.title}</div>
           <div><strong>Period:</strong> ${table.period}</div>
@@ -929,7 +1015,8 @@
           const card = document.createElement("article");
           card.className = "section-card";
           card.dataset.period = item.period;
-          card.dataset.search = `${item.title} ${item.summary} ${item.content} ${item.tags.join(" ")}`.toLowerCase();
+          card.dataset.search = `${item.title} ${item.summary} ${item.content} ${item.tags.join(" ")} ${item.page}`
+            .toLowerCase();
           const buttonHtml = item.table
             ? `<button type="button" data-table="${item.table}">Open related table</button>`
             : "<span></span>";
@@ -938,6 +1025,7 @@
             <p>${item.summary}</p>
             <div class="section-meta">
               <span>Period: ${item.period}</span>
+              <span>Page: ${item.page}</span>
               ${buttonHtml}
             </div>
             <div class="callout">${item.content}</div>
@@ -953,14 +1041,10 @@
         let visibleCount = 0;
 
         cards.forEach((card) => {
-          if (card.dataset.static === "true") {
-            card.style.display = "block";
-            return;
-          }
           const matchesQuery = !query || card.dataset.search.includes(query);
           const matchesPeriod = period === "all" || card.dataset.period === period;
           const shouldShow = matchesQuery && matchesPeriod;
-          card.style.display = shouldShow ? "block" : "none";
+          card.style.display = shouldShow ? "grid" : "none";
           if (shouldShow) visibleCount += 1;
         });
 
@@ -1024,8 +1108,7 @@
         const unitValue = morale * unitSize;
         const lossValue = morale * losses;
         const { effect, bracket } = resolvePostMelee(unitValue, lossValue);
-        let effectClass = "result-neutral";
-        if (effect === "No Effect") effectClass = "result-pass";
+        let effectClass = "result-pass";
         if (effect === "Back") effectClass = "result-back";
         if (effect === "Back and Turn") effectClass = "result-backturn";
         if (effect === "Rout") effectClass = "result-rout";
@@ -1037,10 +1120,14 @@
         `;
       }
 
+      function renderToc() {
+        tocList.innerHTML = tocEntries.map((entry) => `<span>${entry}</span>`).join("");
+      }
+
       renderTableOptions();
       renderTable(tables[0].id);
       renderCards(sectionsContainer, sections);
-      renderCards(quickRefsContainer, quickRefs);
+      renderToc();
       applyFilters();
       updatePostMelee();
 
