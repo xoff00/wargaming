@@ -431,6 +431,13 @@
           <article class="calc-card">
             <h3>Post-Melee Morale</h3>
             <div class="calc-row">
+              <label for="unitType">Unit type</label>
+              <select id="unitType">
+                <option value="standard">Infantry / Other</option>
+                <option value="cavalry">Cavalry</option>
+              </select>
+            </div>
+            <div class="calc-row">
               <label for="unitMorale">Morale value</label>
               <input id="unitMorale" type="number" min="1" max="5" value="3" />
             </div>
@@ -953,6 +960,7 @@
       const activeBadges = document.getElementById("activeBadges");
       const searchInput = document.getElementById("searchInput");
       const periodFilter = document.getElementById("periodFilter");
+      const unitTypeInput = document.getElementById("unitType");
       const unitMoraleInput = document.getElementById("unitMorale");
       const unitSizeInput = document.getElementById("unitSize");
       const lossesInput = document.getElementById("losses");
@@ -1074,29 +1082,44 @@
         return value >= range[0] && value <= range[1];
       }
 
-      function resolvePostMelee(unitValue, lossValue) {
+      function shiftPostMeleeEffect(effect, steps) {
+        const effects = ["No Effect", "Back", "Back and Turn", "Rout"];
+        const index = effects.indexOf(effect);
+        return effects[Math.max(index - steps, 0)];
+      }
+
+      function resolvePostMelee(unitValue, lossValue, unitType) {
         const bracket = getMoraleBracket(unitValue);
-        if (inRange(lossValue, bracket.ne)) return { effect: "No Effect", bracket };
-        if (inRange(lossValue, bracket.b)) return { effect: "Back", bracket };
-        if (inRange(lossValue, bracket.bt)) return { effect: "Back and Turn", bracket };
-        return { effect: "Rout", bracket };
+        let effect = "Rout";
+        if (inRange(lossValue, bracket.ne)) effect = "No Effect";
+        else if (inRange(lossValue, bracket.b)) effect = "Back";
+        else if (inRange(lossValue, bracket.bt)) effect = "Back and Turn";
+
+        const adjustedEffect = unitType === "cavalry" ? shiftPostMeleeEffect(effect, 2) : effect;
+        return { effect: adjustedEffect, baseEffect: effect, bracket };
       }
 
       function updatePostMelee() {
+        const unitType = unitTypeInput.value;
         const morale = clamp(parseInt(unitMoraleInput.value, 10) || 1, 1, 5);
         const unitSize = Math.max(parseInt(unitSizeInput.value, 10) || 0, 0);
         const losses = Math.max(parseInt(lossesInput.value, 10) || 0, 0);
         const unitValue = morale * unitSize;
         const lossValue = morale * losses;
-        const { effect, bracket } = resolvePostMelee(unitValue, lossValue);
+        const { effect, baseEffect, bracket } = resolvePostMelee(unitValue, lossValue, unitType);
         let effectClass = "result-pass";
         if (effect === "Back") effectClass = "result-back";
         if (effect === "Back and Turn") effectClass = "result-backturn";
         if (effect === "Rout") effectClass = "result-rout";
+        const cavalryNote =
+          unitType === "cavalry"
+            ? `<span>Cavalry shift: ${baseEffect} -> ${effect}</span>`
+            : "";
         postMeleeResult.innerHTML = `
           <span>Unit value: ${unitValue}</span>
           <span>Loss value: ${lossValue}</span>
           <span>Bracket: ${bracket.min}-${bracket.max}</span>
+          ${cavalryNote}
           <span class="result-badge ${effectClass}">Result: ${effect}</span>
         `;
       }
@@ -1113,6 +1136,7 @@
 
       searchInput.addEventListener("input", applyFilters);
       periodFilter.addEventListener("change", applyFilters);
+      unitTypeInput.addEventListener("change", updatePostMelee);
       unitMoraleInput.addEventListener("input", updatePostMelee);
       unitSizeInput.addEventListener("input", updatePostMelee);
       lossesInput.addEventListener("input", updatePostMelee);
