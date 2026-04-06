@@ -434,6 +434,7 @@
               <label for="unitType">Unit type</label>
               <select id="unitType">
                 <option value="standard">Infantry / Other</option>
+                <option value="brigade">Brigade</option>
                 <option value="cavalry">Cavalry</option>
               </select>
             </div>
@@ -1095,8 +1096,12 @@
         else if (inRange(lossValue, bracket.b)) effect = "Back";
         else if (inRange(lossValue, bracket.bt)) effect = "Back and Turn";
 
-        const adjustedEffect = unitType === "cavalry" ? shiftPostMeleeEffect(effect, 2) : effect;
-        return { effect: adjustedEffect, baseEffect: effect, bracket };
+        let shiftSteps = 0;
+        if (unitType === "brigade") shiftSteps = 1;
+        if (unitType === "cavalry") shiftSteps = 2;
+
+        const adjustedEffect = shiftPostMeleeEffect(effect, shiftSteps);
+        return { effect: adjustedEffect, baseEffect: effect, bracket, shiftSteps };
       }
 
       function updatePostMelee() {
@@ -1106,20 +1111,20 @@
         const losses = Math.max(parseInt(lossesInput.value, 10) || 0, 0);
         const unitValue = morale * unitSize;
         const lossValue = morale * losses;
-        const { effect, baseEffect, bracket } = resolvePostMelee(unitValue, lossValue, unitType);
+        const { effect, baseEffect, bracket, shiftSteps } = resolvePostMelee(unitValue, lossValue, unitType);
         let effectClass = "result-pass";
         if (effect === "Back") effectClass = "result-back";
         if (effect === "Back and Turn") effectClass = "result-backturn";
         if (effect === "Rout") effectClass = "result-rout";
-        const cavalryNote =
-          unitType === "cavalry"
-            ? `<span>Cavalry shift: ${baseEffect} -> ${effect}</span>`
+        const adjustmentNote =
+          shiftSteps > 0
+            ? `<span>Adjustment: ${shiftSteps} step${shiftSteps === 1 ? "" : "s"} better (${baseEffect} -> ${effect})</span>`
             : "";
         postMeleeResult.innerHTML = `
           <span>Unit value: ${unitValue}</span>
           <span>Loss value: ${lossValue}</span>
           <span>Bracket: ${bracket.min}-${bracket.max}</span>
-          ${cavalryNote}
+          ${adjustmentNote}
           <span class="result-badge ${effectClass}">Result: ${effect}</span>
         `;
       }
